@@ -49,9 +49,13 @@
   services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.warren = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+  users = {
+    mutableUsers = false;
+    users.warren = {
+      isNormalUser = true;
+      hashedPassword = "$6$S5EukdL1T/iWf/.m$4qGh.MS5RqaSD3vWQepTkawdwRPxlVNl2ESeSUquLCp2Ym24UscLjHRZ.6DCov8AzNumDttojZCnpHIDeATYj/";
+      extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    };
   };
   
   nix.extraOptions = ''
