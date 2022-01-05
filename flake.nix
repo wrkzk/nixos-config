@@ -1,8 +1,5 @@
 {
   description = "A simple configuration for a NixOS system";
-  nixConfig.extra-experimental-features = "nix-command flakes";
-
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
   };
