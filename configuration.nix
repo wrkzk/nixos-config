@@ -65,6 +65,7 @@
   environment.systemPackages = with pkgs; [
     alacritty
     firefox
+    neofetch
     (pkgs.writeScriptBin "fs-diff" ''
       #!${pkgs.stdenv.shell}
       alias btrfs="${pkgs.btrfs-progs}/bin/btrfs"
