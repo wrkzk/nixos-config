@@ -13,10 +13,9 @@
         [
           ./configuration.nix
           ./hardware-configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPackages = true;
-            home-manager.userUserPackages = true;
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
             home-manager.users.warren = import ./home.nix;
           }
         ];
