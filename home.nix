@@ -1,6 +1,12 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    alacritty
+    neofetch
+    firefox
+  ];
+
   programs.neovim = {
     enable = true;
   };

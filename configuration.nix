@@ -1,60 +1,47 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-	
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.supportedFilesystems = [ "btrfs" ];
+  # Kernel and bootloader options
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    supportedFilesystems = [ "btrfs" ];
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Networking options
+  networking = {
+    hostName = "sol";
+    networkmanager.enable = true;
+  }
 
-  networking.hostName = "sol";
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
+  # Localization options
   time.timeZone = "America/Chicago";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # Xorg options
+  services.xserver = {
+    enable = true;
+    displayManager.startx.enable = true;
+    windowManager.awesome.enable = true;
+    layout = "us";
+    xkbOptions = "eurosign:e";
+    libinput.enable = true;
+  };
 
-  # Enable the Awesome window manager.
-  services.xserver.displayManager.startx.enable = true;
-  services.xserver.windowManager.awesome.enable = true;
-  
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "eurosign:e";
-
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # User account options
   users = {
     mutableUsers = false;
     users.warren = {
       isNormalUser = true;
       passwordFile = "./passwordFile";
-      extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [ "wheel" "networkmanager" ];
     };
   };
   
