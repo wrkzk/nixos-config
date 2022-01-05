@@ -65,8 +65,7 @@
   environment.systemPackages = with pkgs; [
     alacritty
     firefox
-    git
-    (pkgs.writeScriptBin "fsdiff" ''
+    (pkgs.writeScriptBin "fs-diff" ''
       #!${pkgs.stdenv.shell}
       alias btrfs="${pkgs.btrfs-progs}/bin/btrfs"
       alias sudo="${pkgs.sudo}/bin/sudo"
