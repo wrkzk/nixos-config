@@ -18,4 +18,10 @@
     userEmail = "wrkzk@protonmail.com";
     userName = "wrkzk";
   };
+
+  xsession.windowManager.awesome = {
+    enable = true;
+  };
+
+  home.file.".config/awesome/rc.lua".source = ./awesome/rc.lua
 }
