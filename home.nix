@@ -19,6 +19,11 @@
     userName = "wrkzk";
   };
 
+  programs.java = {
+    enable = true;
+    package = pkgs.jdk;
+  }
+
   xsession.windowManager.awesome = {
     enable = true;
   };
