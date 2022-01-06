@@ -5,6 +5,7 @@
     alacritty
     neofetch
     firefox
+    discord-canary
   ];
 
   programs.neovim = {
