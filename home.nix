@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     alacritty
     neofetch
+    pfetch
     firefox
     discord
   ];
