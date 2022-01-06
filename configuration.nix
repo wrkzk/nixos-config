@@ -29,7 +29,6 @@
   services.xserver = {
     enable = true;
     displayManager.startx.enable = true;
-    windowManager.awesome.enable = true;
     layout = "us";
     xkbOptions = "eurosign:e";
     libinput.enable = true;
