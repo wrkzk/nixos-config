@@ -23,5 +23,5 @@
     enable = true;
   };
 
-  home.file.".config/awesome/rc.lua".source = ./awesome/rc.lua
+  home.file.".config/awesome/rc.lua".source = ./awesome/rc.lua;
 }
