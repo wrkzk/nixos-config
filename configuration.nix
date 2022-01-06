@@ -40,7 +40,7 @@
     mutableUsers = false;
     users.warren = {
       isNormalUser = true;
-      passwordFile = "./passwordFile";
+      passwordFile = "/home/warren/dev/nixos-config/passwordFile";
       extraGroups = [ "wheel" "networkmanager" ];
     };
   };
