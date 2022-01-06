@@ -24,6 +24,11 @@
     package = pkgs.jdk;
   };
 
+  programs.eclipse = {
+    enable = true;
+    package = pkgs.eclipses.eclipse-java;
+  };
+
   xsession.windowManager.awesome = {
     enable = true;
   };
