@@ -34,4 +34,5 @@
   };
 
   home.file.".config/awesome/rc.lua".source = ./awesome/rc.lua;
+  home.file.".config/awesome/themes/default/theme.lua" = ./awesome/themes/default/theme.lua;
 }
