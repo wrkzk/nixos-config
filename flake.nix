@@ -22,7 +22,7 @@
 	    nixpkgs = nixpkgsConfig;
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.warren = import ./home.nix;
+            home-manager.users.warren = import ./hosts/sol/home.nix;
           }
         ];
     };
