@@ -39,7 +39,7 @@
     mutableUsers = false;
     users.warren = {
       isNormalUser = true;
-      hashedPassword = "$6$PL/PVGLdTxI/qNeK$1wLKKZwsaPhvWEUlFBp25GdZKK4VDhgrsi1cMgh3hmW8IcZN2kavTa0/7LGeo4zTU3IDi4qh6IQNkUHWJ1yeq/";
+      hashedPassword = "$6$GENzGew82/xzgA2f$2tO36hLmjPG3aabC/Lv6tppZTNc.DIe5TJypEU3wcTywu4ffEImjChLc4VbSeMy9gtKW3bEVkR5nxRFUcy3BS.";
       extraGroups = [ "wheel" "networkmanager" ];
     };
     users.root = {
