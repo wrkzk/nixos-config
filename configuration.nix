@@ -42,6 +42,9 @@
       hashedPassword = "$6$PL/PVGLdTxI/qNeK$1wLKKZwsaPhvWEUlFBp25GdZKK4VDhgrsi1cMgh3hmW8IcZN2kavTa0/7LGeo4zTU3IDi4qh6IQNkUHWJ1yeq/"
       extraGroups = [ "wheel" "networkmanager" ];
     };
+    users.root = {
+      hashedPassword = "$6$rlge4sqneKLy6q/X$DsJL33yz4z8wOsI52oGUIyBP/JHK3EBg.UvDkW664yEekH2YShQ431OcOzMZ1esLDymY/kJetmwZr7EFYqKBI."
+    };
   };
   
   nix = {
