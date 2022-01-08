@@ -35,7 +35,7 @@
 
   home.file = {
     "awesome" = {
-      source = ./awesome;
+      source = ../../awesome;
       target = ".config/awesome";
     };
   };
