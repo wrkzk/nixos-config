@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   # Kernel and bootloader options
@@ -39,7 +39,7 @@
     mutableUsers = false;
     users.warren = {
       isNormalUser = true;
-      passwordFile = "/home/warren/dev/nixos-config/passwordFile";
+      hashedPassword = "$6$PL/PVGLdTxI/qNeK$1wLKKZwsaPhvWEUlFBp25GdZKK4VDhgrsi1cMgh3hmW8IcZN2kavTa0/7LGeo4zTU3IDi4qh6IQNkUHWJ1yeq/"
       extraGroups = [ "wheel" "networkmanager" ];
     };
   };
