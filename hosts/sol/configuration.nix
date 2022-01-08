@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
   # Kernel and bootloader options
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;

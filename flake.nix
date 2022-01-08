@@ -17,8 +17,7 @@
       system = "x86_64-linux";
       modules =
         [
-          ./configuration.nix
-          ./hardware-configuration.nix
+          ./hosts/sol/configuration.nix
           home-manager.nixosModules.home-manager {
 	    nixpkgs = nixpkgsConfig;
             home-manager.useGlobalPkgs = true;
