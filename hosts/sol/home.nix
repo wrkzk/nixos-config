@@ -6,6 +6,8 @@
     pfetch
     firefox
     discord
+    cbonsai
+    gcc
   ];
 
   programs.git = {

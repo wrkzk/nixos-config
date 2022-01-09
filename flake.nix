@@ -42,7 +42,8 @@
 	        imports = [
 		  ./hosts/sol/home.nix
 		  ./modules/neovim.nix
-		  ./modules/alacritty.nix
+                  ./modules/alacritty.nix
+                  ./modules/fish.nix
 		];
 	      };
             }
