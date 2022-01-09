@@ -44,6 +44,7 @@
 		  ./modules/neovim.nix
                   ./modules/alacritty.nix
                   ./modules/fish.nix
+                  ./modules/qutebrowser.nix
 		];
 	      };
             }
