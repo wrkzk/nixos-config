@@ -1,9 +1,5 @@
--- If LuaRocks is installed, make sure that packages installed through it are
--- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
--- @DOC_REQUIRE_SECTION@
--- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
@@ -19,10 +15,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
--- {{{ Error handling
--- @DOC_ERROR_HANDLING@
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
+-- Error handling
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
                      title = "Oops, there were errors during startup!",
@@ -45,45 +38,26 @@ do
 end
 -- }}}
 
--- {{{ Variable definitions
--- @DOC_LOAD_THEME@
--- Themes define colours, icons, font and wallpapers.
+-- Initialize the theme system
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme/theme.lua")
 
--- @DOC_DEFAULT_APPLICATIONS@
--- This is used later as the default terminal and editor to run.
+-- Set the editor and terminal
 terminal = "alacritty"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
+-- Set the modkey
 modkey = "Mod4"
 
--- @DOC_LAYOUT@
--- Table of layouts to cover with awful.layout.inc, order matters.
+-- Active layouts
 awful.layout.layouts = {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
+    awful.layout.suit.floating
 }
--- }}}
 
 -- {{{ Menu
 -- @DOC_MENU@
