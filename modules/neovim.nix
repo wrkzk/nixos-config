@@ -8,6 +8,17 @@
     plugins = with pkgs.vimPlugins; [
       vim-nix
       {
+        plugin = nvim-tree-lua;
+        config = ''
+          lua << EOF
+          require'nvim-tree'.setup {
+            disable_netrw = true,
+            hijack_netrw = true
+          }
+          EOF
+        '';
+      }
+      {
         plugin = gruvbox-material;
         config = ''
           set termguicolors

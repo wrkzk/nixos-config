@@ -52,7 +52,6 @@ modkey = "Mod4"
 -- Active layouts
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.magnifier,
@@ -186,15 +185,13 @@ awful.screen.connect_for_each_screen(function(s)
 	update_function = list_update
     }
 
-    -- @DOC_WIBAR@
-    -- Create the wibox
+    -- Create the wibar
     s.mywibox = awful.wibar({
 	    position = "top",
 	    screen = s,
 	    height = 23,
     })
 
-    -- @DOC_SETUP_WIDGETS@
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
@@ -208,7 +205,6 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
-            wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
         },
