@@ -8,6 +8,13 @@
     plugins = with pkgs.vimPlugins; [
       vim-nix
       {
+        plugin = gruvbox-material;
+        config = ''
+          set termguicolors
+          colorscheme gruvbox-material
+        '';
+      }
+      {
         plugin = nvim-treesitter;
         config = ''
           lua << EOF
