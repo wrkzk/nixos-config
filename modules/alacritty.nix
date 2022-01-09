@@ -4,6 +4,9 @@
   programs.alacritty = {
     enable = true;
     settings = {
+      shell = {
+        program = "fish";
+      };
       env = {
         WINIT_X11_SCALE_FACTOR = "1";
       };
