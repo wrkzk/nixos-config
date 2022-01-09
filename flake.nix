@@ -22,8 +22,14 @@
 	    nixpkgs = nixpkgsConfig;
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.warren = import ./hosts/sol/home.nix;
-          }
+            home-manager.users.warren = { pkgs, config, ... }:
+	      {
+	        imports = [
+		  ./hosts/sol/home.nix
+		  ./modules/neovim.nix
+		];
+	      };
+            }
         ];
     };
 

@@ -191,7 +191,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox = awful.wibar({
 	    position = "top",
 	    screen = s,
-	    height = 20,
+	    height = 23,
     })
 
     -- @DOC_SETUP_WIDGETS@
