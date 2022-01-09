@@ -10,6 +10,12 @@
       env = {
         WINIT_X11_SCALE_FACTOR = "1";
       };
+      window = {
+        padding = {
+          x = 3;
+          y = 3;
+        };
+      };
       font = {
         size = 10.5;
         normal = {

@@ -4,7 +4,9 @@
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
-    extraConfig = '''';
+    extraConfig = ''
+      set relativenumber
+    '';
     plugins = with pkgs.vimPlugins; [
       vim-nix
       {
@@ -19,10 +21,11 @@
         '';
       }
       {
-        plugin = gruvbox-material;
+        plugin = tokyonight-nvim;
         config = ''
           set termguicolors
-          colorscheme gruvbox-material
+          let g:tokyonight_style = "night"
+          colorscheme tokyonight
         '';
       }
       {
