@@ -1,10 +1,10 @@
-{ config, pkgs }:
+{ config, pkgs, ... }:
 
 {
   imports = [
-    alacritty.nix
-    fish.nix
-    git.nix
+    ./alacritty.nix
+    ./fish.nix
+    ./git.nix
   ];
   
   home.packages = with pkgs; [

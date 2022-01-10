@@ -2,7 +2,7 @@
 
 {
   imports = [
-    awesome.nix
+    ./awesome.nix
   ];
 
   home.file = {
