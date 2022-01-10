@@ -40,11 +40,11 @@
             home-manager.users.warren = { pkgs, config, ... }:
 	      {
 	        imports = [
-		  ./hosts/sol/home.nix
-		  ./modules/neovim.nix
-                  ./modules/alacritty.nix
-                  ./modules/fish.nix
-                  ./modules/qutebrowser.nix
+		  ./modules/browsers
+                  ./modules/dev
+                  ./modules/editors
+                  ./modules/programs
+                  ./modules/xorg
 		];
 	      };
             }
