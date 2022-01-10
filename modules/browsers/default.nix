@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ./qutebroser.nix
+    ./qutebrowser.nix
   ];
 }
