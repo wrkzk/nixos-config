@@ -5,4 +5,4 @@
     enable = true;
     package = pkgs.jdk;
   };
-};
+}
