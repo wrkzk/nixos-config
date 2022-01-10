@@ -17,7 +17,7 @@
         };
       };
       font = {
-        size = 10.5;
+        size = 10;
         normal = {
 	  family = "Iosevka Nerd Font";
 	  style = "Regular";
