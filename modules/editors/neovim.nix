@@ -32,7 +32,7 @@
         plugin = indent-blankline-nvim;
         config = ''
           lua << EOF
-          require'indent_blankline'setup {
+          require'indent_blankline'.setup {
             show_end_of_line = false,
           }
           EOF
