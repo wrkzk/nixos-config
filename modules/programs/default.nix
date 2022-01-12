@@ -12,5 +12,6 @@
     pfetch
     discord
     cbonsai
+    zoom-us
   ];
 }

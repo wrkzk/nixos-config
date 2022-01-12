@@ -38,6 +38,9 @@
     libinput.enable = true;
   };
 
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+
   # User account options
   users = {
     mutableUsers = false;

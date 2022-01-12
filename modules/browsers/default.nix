@@ -4,4 +4,8 @@
   imports = [
     ./qutebrowser.nix
   ];
+
+  home.packages = with pkgs; [
+    firefox
+  ];
 }
