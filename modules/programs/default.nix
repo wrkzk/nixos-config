@@ -13,5 +13,6 @@
     discord
     cbonsai
     zoom-us
+    unzip
   ];
 }
