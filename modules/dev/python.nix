@@ -5,7 +5,7 @@ let
   python-packages = python-packages: with python-packages; [
     protobuf
   ];
-  custom-python = python3.withPackages python-packages
+  custom-python = python3.withPackages python-packages;
 in
 {
   home.packages = with pkgs; [
