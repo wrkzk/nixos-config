@@ -47,12 +47,14 @@
     users.warren = {
       isNormalUser = true;
       hashedPassword = "$6$GENzGew82/xzgA2f$2tO36hLmjPG3aabC/Lv6tppZTNc.DIe5TJypEU3wcTywu4ffEImjChLc4VbSeMy9gtKW3bEVkR5nxRFUcy3BS.";
-      extraGroups = [ "wheel" "networkmanager" "tilp" ];
+      extraGroups = [ "wheel" "networkmanager" "tilp" "adbusers" ];
     };
     users.root = {
       hashedPassword = "$6$rlge4sqneKLy6q/X$DsJL33yz4z8wOsI52oGUIyBP/JHK3EBg.UvDkW664yEekH2YShQ431OcOzMZ1esLDymY/kJetmwZr7EFYqKBI.";
     };
   };
+
+  programs.adb.enable = true;
   
   nix = {
     package = pkgs.nixUnstable;
