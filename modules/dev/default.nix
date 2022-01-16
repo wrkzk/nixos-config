@@ -7,5 +7,6 @@
 
   home.packages = with pkgs; [
     tilp2
+    libticables2
   ];
 }
