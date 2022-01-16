@@ -14,5 +14,6 @@
     cbonsai
     zoom-us
     unzip
+    zip
   ];
 }
