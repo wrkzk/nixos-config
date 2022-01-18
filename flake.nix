@@ -45,6 +45,7 @@
                   ./modules/editors
                   ./modules/programs
                   ./modules/xorg
+                  ./modules/wayland
 		];
 	      };
             }
