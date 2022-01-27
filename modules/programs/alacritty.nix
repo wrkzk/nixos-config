@@ -29,7 +29,7 @@
           foreground = "#c0caf5";
         };
         normal = {
-          black = "#15161E";
+          black = "#15161e";
           red = "#f7768e";
           green = "#9ece6a";
           yellow = "#e0af68";
