@@ -55,7 +55,9 @@
   };
 
   programs.adb.enable = true;
-  
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
+
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''
@@ -90,6 +92,7 @@
         fi
       done
     '')
+    virt-manager
   ];
 
   fonts.fonts = with pkgs; [
