@@ -6,6 +6,6 @@
     backend = "glx";
     experimentalBackends = true;
     fade = true;
-    fadeDelta = "10";
+    fadeDelta = 10;
   };
 }
