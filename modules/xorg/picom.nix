@@ -7,5 +7,5 @@
     experimentalBackends = true;
     fade = true;
     fadeDelta = "10";
-  }
+  };
 }
