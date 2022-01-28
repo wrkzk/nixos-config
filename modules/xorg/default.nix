@@ -4,6 +4,7 @@
   imports = [
     ./awesome.nix
     ./autorandr.nix
+    ./picom.nix
   ];
 
   home.file = {
