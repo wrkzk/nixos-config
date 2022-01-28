@@ -3,5 +3,5 @@
 {
   programs.autorandr = {
     enable = true;
-  }
+  };
 }
