@@ -3,6 +3,7 @@
 {
   imports = [
     ./awesome.nix
+    ./autorandr.nix
   ];
 
   home.file = {
