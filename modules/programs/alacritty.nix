@@ -19,7 +19,7 @@
       font = {
         size = 10;
         normal = {
-	  family = "Iosevka Nerd Font";
+	  family = "Monoid Nerd Font";
 	  style = "Regular";
 	};
       };
