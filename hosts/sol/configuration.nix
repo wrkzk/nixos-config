@@ -96,7 +96,7 @@
   ];
 
   fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "Iosevka" ]; })
+    (nerdfonts.override { fonts = [ "Iosevka", "Monoid" ]; })
   ];
 
   environment.etc = {
