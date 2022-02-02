@@ -17,9 +17,9 @@
         };
       };
       font = {
-        size = 10;
+        size = 9.5;
         normal = {
-	  family = "Monoid Nerd Font";
+	  family = "CaskaydiaCove Nerd Font";
 	  style = "Regular";
 	};
       };
