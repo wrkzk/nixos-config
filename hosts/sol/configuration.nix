@@ -57,6 +57,7 @@
   programs.adb.enable = true;
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
+  services.tlp.enable = true;
 
   nix = {
     package = pkgs.nixUnstable;
