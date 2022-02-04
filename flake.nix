@@ -5,9 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
   };
 
-  outputs = { self, home-manager, nixpkgs, neovim-nightly }:
+  outputs = { self, home-manager, nixpkgs, neovim-nightly, nix-doom-emacs }:
     let
       nixpkgsConfig = {
         config = { allowUnfree = true; };
@@ -40,6 +41,7 @@
             home-manager.users.warren = { pkgs, config, ... }:
 	      {
 	        imports = [
+                  nix-doom-emacs.hmModule
 		  ./modules/browsers
                   ./modules/dev
                   ./modules/editors
