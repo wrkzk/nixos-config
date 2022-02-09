@@ -51,7 +51,16 @@
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  fileSystems."/swap" = 
+    { device = "/dev/disk/by-uuid/4896943d-d35a-47be-8038-35771f7e8792";
+      fsType = "btrfs";
+      options = [ "subvol=swap" "compress=zstd" "noatime" ];
+    };
+
+  swapDevices =
+    [ { device = "/swap/swapfile";
+      }
+    ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
