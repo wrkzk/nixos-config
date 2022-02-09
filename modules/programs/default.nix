@@ -6,6 +6,10 @@
     ./fish.nix
     ./git.nix
   ];
+
+  overlays = [
+    ./multimc.nix
+  ]
   
   home.packages = with pkgs; [
     neofetch
@@ -15,5 +19,6 @@
     zoom-us
     unzip
     zip
+    multimc
   ];
 }
