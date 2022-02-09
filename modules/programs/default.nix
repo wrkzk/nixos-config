@@ -7,10 +7,6 @@
     ./git.nix
   ];
 
-  overlays = [
-    ./multimc.nix
-  ];
-  
   home.packages = with pkgs; [
     neofetch
     pfetch

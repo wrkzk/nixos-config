@@ -15,6 +15,7 @@
       };
       overlays = [
         neovim-nightly.overlay
+        ./overlays/multimc.nix
       ];
     in
   {
