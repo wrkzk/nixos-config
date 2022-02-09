@@ -9,7 +9,7 @@
 
   overlays = [
     ./multimc.nix
-  ]
+  ];
   
   home.packages = with pkgs; [
     neofetch
