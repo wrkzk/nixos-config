@@ -15,7 +15,16 @@
       };
       overlays = [
         neovim-nightly.overlay
-        ./overlays/multimc.nix
+        (self: super: {
+          multimc = super.multimc.overrideAttrs (old: {
+            src = super.fetchgit {
+              url = "https://github.com/AfoninZ/MultiMC5-Cracked";
+              rev = "18aa0d2faafbfeb30671f8e3d81ec6427ad6f0f5";
+              sha256 = "sha256-2xs1xxVVOCy8reKQr+6bYM/LqSCDbHKUCk4aCmhwU8Y=";
+              fetchSubmodules = true;
+            };
+          });
+        })
       ];
     in
   {
