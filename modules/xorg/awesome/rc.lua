@@ -120,6 +120,23 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local normal_tag_names = {" web ", " term ", " dev ", " chat ", " media ", " gfx "}
+local focused_tag_names = {}
+
+for k = 1, #normal_tag_names do
+    table.insert(focused_tag_names, "[" .. normal_tag_names[k]:gsub("%s+", "") .. "]")
+end
+
+screen.connect_signal("tag::history::update", function(s)
+   for k, t in pairs(awful.screen.focused().tags) do
+       if awful.tag.selected() == t then
+           t.name = focused_tag_names[k]
+       else
+           t.name = normal_tag_names[k]
+       end
+   end
+end)
+
 -- @DOC_FOR_EACH_SCREEN@
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -158,6 +175,8 @@ awful.screen.connect_for_each_screen(function(s)
 	    position = "top",
 	    screen = s,
 	    height = 23,
+	    bg = "#15161e",
+	    fg = "#c0caf5",
     })
 
     -- Add widgets to the wibox
