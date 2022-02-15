@@ -15,6 +15,5 @@
     zoom-us
     unzip
     zip
-    multimc
   ];
 }
