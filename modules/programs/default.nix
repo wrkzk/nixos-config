@@ -10,7 +10,10 @@
   home.packages = with pkgs; [
     neofetch
     pfetch
+    
     discord
+    betterdiscordctl
+
     cbonsai
     zoom-us
     unzip
