@@ -48,7 +48,11 @@
                   ./modules/programs
                   ./modules/xorg
                   ./modules/wayland
-		];
+                ];
+
+                home.packages = [
+                  (pkgs.callPackage ./pkgs/multimc-cracked.nix {})
+                ];
 	      };
             }
         ];
