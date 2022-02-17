@@ -1,7 +1,11 @@
-final: prev:
+{ pkgs ? import <nixpkgs> { }, overrides ? (self: super: { }) }:
+
+with pkgs;
+
 let
-  inherit (prev) callPackage;
-in
-{
-  multimc = callPackage ./multimc { };
-}
+  packages = self:
+    let callPackage = newScope self;
+    in {
+      multimc-cracked = libsForQt5.callPackage ./multimc-cracked { };
+    };
+in lib.fix (lib.extends overrides packages)
