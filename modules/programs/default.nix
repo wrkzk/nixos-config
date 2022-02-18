@@ -11,8 +11,16 @@
     neofetch
     pfetch
     
+    foot
+
     discord
     betterdiscordctl
+
+    polymc
+    multimc-cracked
+    bintools-unwrapped
+    file
+    patchelf
 
     cbonsai
     zoom-us
