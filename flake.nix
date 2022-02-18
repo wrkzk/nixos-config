@@ -14,6 +14,7 @@
         config = { allowUnfree = true; };
       };
       overlays = [
+        (self: super: import ./packages { pkgs = super; })
         neovim-nightly.overlay
       ];
     in
@@ -48,10 +49,6 @@
                   ./modules/programs
                   ./modules/xorg
                   ./modules/wayland
-                ];
-
-                home.packages = [
-                  (pkgs.callPackage ./pkgs/multimc-cracked.nix {})
                 ];
 	      };
             }
