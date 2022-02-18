@@ -120,22 +120,22 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
-local normal_tag_names = {" web ", " term ", " dev ", " chat ", " media ", " gfx "}
-local focused_tag_names = {}
+--local normal_tag_names = {" web ", " term ", " dev ", " chat ", " media ", " gfx "}
+--local focused_tag_names = {}
 
-for k = 1, #normal_tag_names do
-    table.insert(focused_tag_names, "[" .. normal_tag_names[k]:gsub("%s+", "") .. "]")
-end
+--for k = 1, #normal_tag_names do
+--    table.insert(focused_tag_names, "[" .. normal_tag_names[k]:gsub("%s+", "") .. "]")
+--end
 
-screen.connect_signal("tag::history::update", function(s)
-   for k, t in pairs(awful.screen.focused().tags) do
-       if awful.tag.selected() == t then
-           t.name = focused_tag_names[k]
-       else
-           t.name = normal_tag_names[k]
-       end
-   end
-end)
+--screen.connect_signal("tag::history::update", function(s)
+--   for k, t in pairs(awful.screen.focused().tags) do
+--       if awful.tag.selected() == t then
+--           t.name = focused_tag_names[k]
+--       else
+--           t.name = normal_tag_names[k]
+--       end
+--   end
+--end)
 
 -- @DOC_FOR_EACH_SCREEN@
 awful.screen.connect_for_each_screen(function(s)
@@ -143,7 +143,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "web", "term", "dev", "chat", "media", "gfx"}, s, awful.layout.layouts[1])
+    awful.tag({ " web", " term", " dev", " chat", " media", " gfx"}, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -159,7 +159,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytaglist = awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
+        buttons = taglist_buttons,
     }
 
     -- Create a tasklist widget
