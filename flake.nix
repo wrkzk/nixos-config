@@ -15,6 +15,21 @@
       };
       overlays = [
         (self: super: import ./packages { pkgs = super; })
+        (self: super: {
+          mathematica = super.mathematica.overrideAttrs (old: {
+            version = "12.3.1";
+            sha256 = "51b9cab12fd91b009ea7ad4968a2c8a59e94dc55d2e6cc1d712acd5ba2c4d509";
+            installer = "Mathematica_12.3.1_LINUX.sh";
+          });
+        })
+        (self: super: {
+          discord = super.discord.overrideAttrs (old: {
+            src = fetchTarball {
+              url = "https://discord.com/api/download?platform=linux&format=tar.gz";
+              sha256 = "0hdgif8jpp5pz2c8lxas88ix7mywghdf9c9fn95n0dwf8g1c1xbb";
+            };
+          });
+        })
         neovim-nightly.overlay
       ];
     in
@@ -49,6 +64,7 @@
                   ./modules/programs
                   ./modules/xorg
                   ./modules/wayland
+                  ./modules/misc
                 ];
 	      };
             }
