@@ -93,7 +93,6 @@
         fi
       done
     '')
-    #virt-manager
   ];
 
   fonts.fonts = with pkgs; [
