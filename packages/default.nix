@@ -6,6 +6,7 @@ let
   packages = self:
     let callPackage = newScope self;
     in {
-      multimc-cracked = libsForQt5.callPackage ./multimc-cracked { };
+      multimc-cracked = libsForQt5.callPackage ./multimc-cracked {};
+      mathematica-latest = callPackage ./mathematica {};
     };
 in lib.fix (lib.extends overrides packages)
