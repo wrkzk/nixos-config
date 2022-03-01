@@ -26,5 +26,8 @@
     zoom-us
     unzip
     zip
+
+    mathematica-latest
+    #virt-manager
   ];
 }
