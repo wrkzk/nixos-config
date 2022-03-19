@@ -10,6 +10,7 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
+--local vicious = require("vicious")
 
 -- Handle errors on startup
 if awesome.startup_errors then
@@ -143,7 +144,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ " web", " term", " dev", " chat", " media", " gfx"}, s, awful.layout.layouts[1])
+    awful.tag({ "web", "term", "dev", "chat", "media", "gfx"}, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()

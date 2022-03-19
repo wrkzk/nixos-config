@@ -6,5 +6,5 @@
     desktop = "$HOME/tmp";
     documents = "$HOME/doc";
     download = "$HOME/tmp";
-  }
+  };
 }
