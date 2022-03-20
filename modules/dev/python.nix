@@ -4,6 +4,7 @@ with pkgs;
 let
   python-packages = python-packages: with python-packages; [
     protobuf
+    numpy
   ];
   custom-python = python3.withPackages python-packages;
 in
