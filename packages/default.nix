@@ -9,5 +9,6 @@ let
       multimc-cracked = libsForQt5.callPackage ./multimc-cracked {};
       mathematica-latest = callPackage ./mathematica {};
       bling = callPackage ./bling {};
+      rubato = callPackage ./rubato {};
     };
 in lib.fix (lib.extends overrides packages)
