@@ -10,5 +10,6 @@ let
       mathematica-latest = callPackage ./mathematica {};
       bling = callPackage ./bling {};
       rubato = callPackage ./rubato {};
+      lain = callPackage ./lain {};
     };
 in lib.fix (lib.extends overrides packages)

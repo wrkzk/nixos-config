@@ -13,4 +13,8 @@
       target = ".config/awesome";
     };
   };
+
+  home.packages = with pkgs; [
+    pkgs.luaPackages.vicious
+  ];
 }

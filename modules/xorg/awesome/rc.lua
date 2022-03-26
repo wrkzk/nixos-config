@@ -10,7 +10,9 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
---local vicious = require("vicious")
+local vicious = require("vicious")
+local bling = require("bling")
+local rubato = require("rubato")
 
 -- Handle errors on startup
 if awesome.startup_errors then
@@ -36,7 +38,7 @@ end
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme/theme.lua")
 
 -- Set the editor and terminal
-terminal = "alacritty"
+terminal = "start-alacritty"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -45,6 +47,8 @@ modkey = "Mod4"
 
 -- Active layouts
 awful.layout.layouts = {
+    bling.layout.mstab,
+    bling.layout.centered,
     awful.layout.suit.tile,
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
@@ -54,12 +58,69 @@ awful.layout.layouts = {
 
 -- Menubar configuration
 menubar.utils.terminal = terminal
-
--- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
+mytextclock = wibox.widget.textclock(markup("7aa2f7", " %A %d %B") .. markup("7f86a2", ">") .. markup("f7768e", "%H:%M"))
 
--- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+membox = wibox.widget.textbox()
+vicious.cache(vicious.widgets.mem)
+vicious.register(membox, vicious.widgets.mem, "Mem $2 MiB ", 5)
+
+batbox = wibox.widget.textbox()
+vicious.cache(vicious.widgets.bat)
+vicious.register(batbox, vicious.widgets.bat, "Bat $2 ", 30, "BAT0")
+
+local anim_y = rubato.timed {
+    pos = 1090,
+    rate = 60,
+    easing = rubato.quadratic,
+    intro = 0.1,
+    duration = 0.3,
+    awestore_compat = true -- This option must be set to true.
+}
+
+local anim_x = rubato.timed {
+    pos = -970,
+    rate = 60,
+    easing = rubato.quadratic,
+    intro = 0.1,
+    duration = 0.3,
+    awestore_compat = true -- This option must be set to true.
+}
+
+local term_scratch = bling.module.scratchpad {
+    command = "start-alacritty-spad",           -- How to spawn the scratchpad
+    rule = { instance = "spad" },                     -- The rule that the scratchpad will be searched by
+    sticky = true,                                    -- Whether the scratchpad should be sticky
+    autoclose = true,                                 -- Whether it should hide itself when losing focus
+    floating = true,                                  -- Whether it should be floating (MUST BE TRUE FOR ANIMATIONS)
+    geometry = {x=360, y=90, height=900, width=1200}, -- The geometry in a floating state
+    reapply = true,                                   -- Whether all those properties should be reapplied on every new opening of the scratchpad (MUST BE TRUE FOR ANIMATIONS)
+    dont_focus_before_close  = false,                 -- When set to true, the scratchpad will be closed by the toggle function regardless of whether its focused or not. When set to false, the toggle function will first bring the scratchpad into focus and only close it on a second call
+    rubato = {x = anim_x, y = anim_y}                 -- Optional. This is how you can pass in the rubato tables for animations. If you don't want animations, you can ignore this option.
+}
+
+bling.widget.tag_preview.enable {
+    show_client_content = false,  -- Whether or not to show the client content
+    x = 10,                       -- The x-coord of the popup
+    y = 10,                       -- The y-coord of the popup
+    scale = 0.25,                 -- The scale of the previews compared to the screen
+    honor_padding = false,        -- Honor padding when creating widget size
+    honor_workarea = false,       -- Honor work area when creating widget size
+    placement_fn = function(c)    -- Place the widget using awful.placement (this overrides x & y)
+        awful.placement.top_left(c, {
+            margins = {
+                top = 30,
+                left = 30
+            }
+        })
+    end,
+    background_widget = wibox.widget {    -- Set a background image (like a wallpaper) for the widget 
+        image = beautiful.wallpaper,
+        horizontal_fit_policy = "fit",
+        vertical_fit_policy   = "fit",
+        widget = wibox.widget.imagebox
+    }
+}
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -121,83 +182,41 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
---local normal_tag_names = {" web ", " term ", " dev ", " chat ", " media ", " gfx "}
---local focused_tag_names = {}
-
---for k = 1, #normal_tag_names do
---    table.insert(focused_tag_names, "[" .. normal_tag_names[k]:gsub("%s+", "") .. "]")
---end
-
---screen.connect_signal("tag::history::update", function(s)
---   for k, t in pairs(awful.screen.focused().tags) do
---       if awful.tag.selected() == t then
---           t.name = focused_tag_names[k]
---       else
---           t.name = normal_tag_names[k]
---       end
---   end
---end)
-
 -- @DOC_FOR_EACH_SCREEN@
 awful.screen.connect_for_each_screen(function(s)
-    -- Wallpaper
     set_wallpaper(s)
-
-    -- Each screen has its own tag table.
     awful.tag({ "web", "term", "dev", "chat", "media", "gfx"}, s, awful.layout.layouts[1])
-
-    -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
-    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
+
     s.mylayoutbox:buttons(gears.table.join(
                            awful.button({ }, 1, function () awful.layout.inc( 1) end),
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
-    -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist {
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons,
-    }
 
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist {
-        screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons,
-	update_function = list_update
-    }
+    s.mytaglist = awful.widget.taglist { screen  = s, filter  = awful.widget.taglist.filter.all, buttons = taglist_buttons }
+    s.mytasklist = awful.widget.tasklist { screen  = s, filter  = awful.widget.tasklist.filter.currenttags, buttons = tasklist_buttons, update_function = list_update }
 
-    -- Create the wibar
-    s.mywibox = awful.wibar({
-	    position = "top",
-	    screen = s,
-	    height = 23,
-	    bg = "#15161e",
-	    fg = "#c0caf5",
-    })
+    s.mywibox = awful.wibar({position = "top", screen = s, height = 25, bg = "#0f1015", fg = "#c0caf5"})
 
-    -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
-        { -- Left widgets
+        {
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
             s.mypromptbox,
         },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
+	nil,
+        {
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+	    batbox,
+            membox,
             mytextclock,
-            s.mylayoutbox,
-        },
+        }
     }
 end)
--- }}}
+
 
 -- {{{ Mouse bindings
 -- @DOC_ROOT_BUTTONS@
@@ -219,6 +238,8 @@ globalkeys = gears.table.join(
               {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
+    awful.key({ modkey, "Shift"   }, "s", function () term_scratch:toggle() end,
+              { description = "toggle the scratchpad", group = "client"}),
 
     awful.key({ modkey,           }, "j",
         function ()

@@ -10,6 +10,7 @@
       env = {
         WINIT_X11_SCALE_FACTOR = "1";
       };
+      ipc_socket = true;
       window = {
         padding = {
           x = 3;

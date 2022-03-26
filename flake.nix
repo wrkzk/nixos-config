@@ -6,9 +6,10 @@
     home-manager.url = "github:nix-community/home-manager";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    nixpkgs-f2k.url = "github:fortuneteller2k/nixpkgs-f2k";
   };
 
-  outputs = { self, home-manager, nixpkgs, neovim-nightly, nix-doom-emacs }:
+  outputs = { self, home-manager, nixpkgs, neovim-nightly, nix-doom-emacs, nixpkgs-f2k }:
     let
       nixpkgsConfig = {
         config = { allowUnfree = true; };
@@ -31,6 +32,7 @@
           });
         })
         neovim-nightly.overlay
+        nixpkgs-f2k.overlay
       ];
     in
   {

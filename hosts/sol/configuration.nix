@@ -40,14 +40,21 @@
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport32Bit = true;
 
+  # Fingerprint recognition
+  services.fprintd = {
+    enable = true;
+  };
+  
   # User account options
   users = {
     mutableUsers = false;
     users.warren = {
       isNormalUser = true;
       hashedPassword = "$6$GENzGew82/xzgA2f$2tO36hLmjPG3aabC/Lv6tppZTNc.DIe5TJypEU3wcTywu4ffEImjChLc4VbSeMy9gtKW3bEVkR5nxRFUcy3BS.";
-      extraGroups = [ "wheel" "networkmanager" "tilp" "adbusers" "libvirtd" ];
+      extraGroups = [ "wheel" "networkmanager" "tilp" "adbusers" "libvirtd" "plugdev" ];
     };
     users.root = {
       hashedPassword = "$6$rlge4sqneKLy6q/X$DsJL33yz4z8wOsI52oGUIyBP/JHK3EBg.UvDkW664yEekH2YShQ431OcOzMZ1esLDymY/kJetmwZr7EFYqKBI.";
@@ -93,10 +100,22 @@
         fi
       done
     '')
+    (pkgs.writeScriptBin "start-alacritty" ''
+      #!${pkgs.stdenv.shell}
+      alacritty msg create-window || alacritty
+    '')
+    (pkgs.writeScriptBin "start-alacritty-spad" ''
+      #!${pkgs.stdenv.shell}
+      alacritty msg create-window --class spad || alacritty --class spad
+    '')
   ];
 
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "Iosevka" "Monoid" "CascadiaCode"]; })
+    tamsyn
+    tamzen
+    terminus_font
+    termsyn
   ];
 
   environment.etc = {

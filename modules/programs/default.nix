@@ -29,5 +29,16 @@
 
     mathematica-latest
     #virt-manager
+
+    sysfsutils
+    grub2
+    xorriso
+
+    bling
+    rubato
+    lain
+
+    blender
+    steam
   ];
 }
