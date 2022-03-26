@@ -13,6 +13,8 @@ require("awful.hotkeys_popup.keys")
 local vicious = require("vicious")
 local bling = require("bling")
 local rubato = require("rubato")
+local lain  = require("lain")
+local markup = lain.util.markup
 
 -- Handle errors on startup
 if awesome.startup_errors then
@@ -47,27 +49,32 @@ modkey = "Mod4"
 
 -- Active layouts
 awful.layout.layouts = {
-    bling.layout.mstab,
-    bling.layout.centered,
     awful.layout.suit.tile,
     awful.layout.suit.spiral.dwindle,
+    bling.layout.mstab,
+    bling.layout.centered,
     awful.layout.suit.max,
-    awful.layout.suit.magnifier,
     awful.layout.suit.floating
 }
 
 -- Menubar configuration
 menubar.utils.terminal = terminal
 mykeyboardlayout = awful.widget.keyboardlayout()
-mytextclock = wibox.widget.textclock(markup("7aa2f7", " %A %d %B") .. markup("7f86a2", ">") .. markup("f7768e", "%H:%M"))
+mytextclock = wibox.widget.textclock(markup("#7aa2f7", "%A %d %B") .. markup("#7f86a2", " > ") .. markup("#f7768e", "%H:%M "))
 
 membox = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
-vicious.register(membox, vicious.widgets.mem, "Mem $2 MiB ", 5)
+vicious.register(membox, vicious.widgets.mem, "Mem $2 MiB  ", 5)
+
+cpubox = wibox.widget.textbox()
+vicious.cache(vicious.widgets.cpu)
+vicious.register(cpubox, vicious.widgets.cpu, "Cpu $1  ")
 
 batbox = wibox.widget.textbox()
 vicious.cache(vicious.widgets.bat)
-vicious.register(batbox, vicious.widgets.bat, "Bat $2 ", 30, "BAT0")
+vicious.register(batbox, vicious.widgets.bat, "Bat $2  ", 30, "BAT0")
+
+space = wibox.widget.textbox(" ")
 
 local anim_y = rubato.timed {
     pos = 1090,
@@ -173,6 +180,12 @@ local function set_wallpaper(s)
     end
 end
 
+local function update_txt_layoutbox(s)
+    -- Writes a string representation of the current layout in a textbox widget
+    local txt_l = beautiful["layout_txt_" .. awful.layout.getname(awful.layout.get(s))] or ""
+    s.mytxtlayoutbox:set_text(txt_l)
+end
+
 local common = require("awful.widget.common")
 local function list_update(w, buttons, label, data, objects)
     common.list_update(w, buttons, label, data, objects)
@@ -185,10 +198,20 @@ screen.connect_signal("property::geometry", set_wallpaper)
 -- @DOC_FOR_EACH_SCREEN@
 awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
-    awful.tag({ "web", "term", "dev", "chat", "media", "gfx"}, s, awful.layout.layouts[1])
+    awful.tag({ "web ", "term ", "dev " ,"chat ", "media ", "gfx "}, s, awful.layout.layouts[1])
     s.mypromptbox = awful.widget.prompt()
-    s.mylayoutbox = awful.widget.layoutbox(s)
 
+    s.mytxtlayoutbox = wibox.widget.textbox(beautiful["layout_txt_" .. awful.layout.getname(awful.layout.get(s))])
+    awful.tag.attached_connect_signal(s, "property::selected", function () update_txt_layoutbox(s) end)
+    awful.tag.attached_connect_signal(s, "property::layout", function () update_txt_layoutbox(s) end)
+    s.mytxtlayoutbox:buttons(gears.table.join(
+                           awful.button({}, 1, function() awful.layout.inc(1) end),
+                           awful.button({}, 2, function () awful.layout.set( awful.layout.layouts[1] ) end),
+                           awful.button({}, 3, function() awful.layout.inc(-1) end),
+                           awful.button({}, 4, function() awful.layout.inc(1) end),
+                           awful.button({}, 5, function() awful.layout.inc(-1) end)))
+
+    s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(gears.table.join(
                            awful.button({ }, 1, function () awful.layout.inc( 1) end),
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
@@ -204,14 +227,17 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         {
             layout = wibox.layout.fixed.horizontal,
+	    space,
             s.mytaglist,
+	    s.mytxtlayoutbox,
             s.mypromptbox,
         },
 	nil,
         {
             layout = wibox.layout.fixed.horizontal,
+	    cpubox,
+	    membox,
 	    batbox,
-            membox,
             mytextclock,
         }
     }

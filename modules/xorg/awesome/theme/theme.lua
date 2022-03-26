@@ -16,7 +16,7 @@ theme.font          = "CaskaydiaCove Nerd Font 9.5"
 theme.tasklist_disable_icon = true;
 
 theme.bg_normal     = "#1a1b26"
-theme.bg_focus      = "#15161e"
+theme.bg_focus      = "#0f1015"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal
@@ -31,6 +31,13 @@ theme.border_width  = dpi(2)
 theme.border_normal = "#000000"
 theme.border_focus  = "#535d6c"
 theme.border_marked = "#91231c"
+
+theme.layout_txt_tile                           = " []="
+theme.layout_txt_mstab                          = " [t]"
+theme.layout_txt_dwindle                        = " [@]"
+theme.layout_txt_max                            = " [M]"
+theme.layout_txt_floating                       = " ><>"
+theme.layout_txt_centered                       = " |M|"
 
 -- There are other variable sets
 -- overriding the default one when

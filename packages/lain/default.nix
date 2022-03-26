@@ -12,7 +12,7 @@ stdenv.mkDerivation {
     owner = "lcpz";
     repo = "lain";
     rev = "0df20e38bbd047c1afea46ab25e8ecf758bb5d45";
-    sha256 = "";
+    sha256 = "sha256-SjlUbiWdLQrxhNIB7p9JvQGwxwcu/4f9LtwjW+LNu78=";
   };
 
   buildInputs = [ lua ];
