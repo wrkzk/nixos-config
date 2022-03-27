@@ -15,6 +15,8 @@
 
     discord
     betterdiscordctl
+    signal-desktop
+    scrcpy
 
     polymc
     multimc-cracked

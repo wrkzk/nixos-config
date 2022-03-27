@@ -5,6 +5,8 @@ let
   python-packages = python-packages: with python-packages; [
     protobuf
     numpy
+    jupyter
+    bwsi-grader
   ];
   custom-python = python3.withPackages python-packages;
 in

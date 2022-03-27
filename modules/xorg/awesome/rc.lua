@@ -64,15 +64,15 @@ mytextclock = wibox.widget.textclock(markup("#7aa2f7", "%A %d %B") .. markup("#7
 
 membox = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
-vicious.register(membox, vicious.widgets.mem, "Mem $2 MiB  ", 5)
+vicious.register(membox, vicious.widgets.mem, markup("#7f86a2", "Mem ") .. "$2 MiB   ", 5)
 
 cpubox = wibox.widget.textbox()
 vicious.cache(vicious.widgets.cpu)
-vicious.register(cpubox, vicious.widgets.cpu, "Cpu $1  ")
+vicious.register(cpubox, vicious.widgets.cpu, markup("#7f86a2", "Cpu") .. " $1   ", 3)
 
 batbox = wibox.widget.textbox()
 vicious.cache(vicious.widgets.bat)
-vicious.register(batbox, vicious.widgets.bat, "Bat $2  ", 30, "BAT0")
+vicious.register(batbox, vicious.widgets.bat, markup("#7f86a2", "Bat") .. " $2   ", 30, "BAT0")
 
 space = wibox.widget.textbox(" ")
 
