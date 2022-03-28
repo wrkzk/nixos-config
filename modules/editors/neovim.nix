@@ -6,9 +6,20 @@
     package = pkgs.neovim-nightly;
     extraConfig = ''
       set relativenumber
+      set mouse=a
     '';
     plugins = with pkgs.vimPlugins; [
       vim-nix
+      {
+        plugin = presence-nvim
+        config = ''
+          lua << EOF
+          require("presence"):setup({
+            auto_update = true
+          })
+          EOF
+        '';
+      }
       {
         plugin = nvim-tree-lua;
         config = ''
