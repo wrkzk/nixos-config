@@ -11,6 +11,5 @@ let
       bling = callPackage ./bling {};
       rubato = callPackage ./rubato {};
       lain = callPackage ./lain {};
-      bwsi-grader = callPackage ./bwsi-grader {};
     };
 in lib.fix (lib.extends overrides packages)

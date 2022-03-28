@@ -6,7 +6,6 @@ let
     protobuf
     numpy
     jupyter
-    bwsi-grader
   ];
   custom-python = python3.withPackages python-packages;
 in

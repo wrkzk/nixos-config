@@ -30,17 +30,20 @@
     zip
 
     mathematica-latest
-    #virt-manager
+    virt-manager
 
     sysfsutils
     grub2
     xorriso
-
+    
+    # Awesomewm libraries
     bling
     rubato
     lain
 
     blender
     steam
+
+    soco-cli
   ];
 }
