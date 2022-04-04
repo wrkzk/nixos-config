@@ -7,11 +7,34 @@
     extraConfig = ''
       set relativenumber
       set mouse=a
+      set termguicolors
     '';
     plugins = with pkgs.vimPlugins; [
       vim-nix
+      barbar-nvim
       {
-        plugin = presence-nvim
+        plugin = nvim-web-devicons;
+        config = ''
+          lua << EOF
+          require'nvim-web-devicons'.setup()
+          EOF
+        '';
+      }
+      {
+        plugin = lualine-nvim;
+        config = ''
+          lua << EOF
+          require('lualine').setup {
+            options = {
+              icons_enabled = true,
+              theme = 'auto'
+            }
+          }
+          EOF
+        '';
+      }
+      {
+        plugin = presence-nvim;
         config = ''
           lua << EOF
           require("presence"):setup({
