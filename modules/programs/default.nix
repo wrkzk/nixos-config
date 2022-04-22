@@ -45,5 +45,11 @@
     steam
 
     soco-cli
+
+    #mullvad
+    mullvad-vpn
+
+    realvnc-vnc-viewer
+    inkscape
   ];
 }
