@@ -5,7 +5,7 @@
      ./eclipse.nix
      ./neovim.nix
      ./doom.nix
-     ./vscodium.nix
+     ./vscode.nix
    ];
 
    home.packages = with pkgs; [
