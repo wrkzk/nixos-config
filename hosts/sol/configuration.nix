@@ -21,6 +21,9 @@
     networkmanager.enable = true;
   };
   services.mullvad-vpn.enable = true;
+  networking.firewall.allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+  networking.firewall.allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
+
 
   # Localization options
   time.timeZone = "America/Chicago";
@@ -33,7 +36,9 @@
   # Xorg options
   services.xserver = {
     enable = true;
-    displayManager.startx.enable = true;
+    #displayManager.startx.enable = true;
+    displayManager.sddm.enable = true;
+    desktopManager.plasma5.enable = true;
     layout = "us";
     xkbOptions = "eurosign:e";
     libinput.enable = true;
@@ -45,9 +50,9 @@
   hardware.opengl.driSupport32Bit = true;
 
   # Fingerprint recognition
-  services.fprintd = {
-    enable = true;
-  };
+  #services.fprintd = {
+  #  enable = true;
+  #};
   
   # User account options
   users = {
@@ -65,7 +70,7 @@
   programs.adb.enable = true;
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
-  services.tlp.enable = true;
+  #services.tlp.enable = true;
 
   nix = {
     package = pkgs.nixUnstable;
@@ -74,7 +79,12 @@
     '';
   };
 
+  environment.sessionVariables = rec {
+    MOZ_ENABLE_WAYLAND = "1";
+  };
+
   environment.systemPackages = with pkgs; [
+    gnomeExtensions.gsconnect
     (pkgs.writeScriptBin "fs-diff" ''
       #!${pkgs.stdenv.shell}
       alias btrfs="${pkgs.btrfs-progs}/bin/btrfs"

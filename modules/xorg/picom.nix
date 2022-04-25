@@ -2,7 +2,7 @@
 
 {
   services.picom = {
-    enable = true;
+    enable = false;
     experimentalBackends = true;
     extraOptions = ''
       shadow = true;

@@ -1,6 +1,15 @@
 { config, pkgs, ... }:
 
-{
+let
+  dash-to-dock-42 = pkgs.gnomeExtensions.dash-to-dock.overrideAttrs (oldAttrs: rec {
+    src = pkgs.fetchFromGitHub {
+      owner = "micheleg";
+      repo = "dash-to-dock";
+      rev = "ce45bfe0666592038477235e6ac776385dfd884f";
+      sha256 = "sha256-w5I2Eeb47YeftJwIhmInUJzB24ty+q1rR9bYJ9VgmFI=";
+    };
+  });
+in {
   imports = [
     ./alacritty.nix
     ./fish.nix
@@ -41,10 +50,24 @@
     rubato
     lain
 
+    kitty
+
     blender
     steam
 
-    soco-cli
+    #soco-cli
+    gnomeExtensions.pop-shell
+    gnomeExtensions.pop-launcher-super-key
+    gnome.gnome-tweaks
+    gnome.gnome-shell-extensions
+    gnome.gnome-terminal
+    gnome.polari
+    gnomeExtensions.caffeine
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.cpu-power-manager
+    dash-to-dock-42
+    gnomeExtensions.dash-to-panel
+    fractal
 
     #mullvad
     mullvad-vpn
