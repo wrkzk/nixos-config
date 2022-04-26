@@ -83,8 +83,11 @@
     MOZ_ENABLE_WAYLAND = "1";
   };
 
+  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
   environment.systemPackages = with pkgs; [
-    gnomeExtensions.gsconnect
+    firefox-beta
+    plasma-browser-integration
+    xdg-desktop-portal-kde
     (pkgs.writeScriptBin "fs-diff" ''
       #!${pkgs.stdenv.shell}
       alias btrfs="${pkgs.btrfs-progs}/bin/btrfs"

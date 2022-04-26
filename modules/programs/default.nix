@@ -70,7 +70,6 @@ in {
     fractal
 
     libsForQt5.bismuth
-    libsForQt5.plasma-browser-integration
     libsForQt5.krunner
 
     #mullvad

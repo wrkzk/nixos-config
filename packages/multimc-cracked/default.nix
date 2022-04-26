@@ -12,8 +12,8 @@ in stdenv.mkDerivation {
   version = "nightly";
   system = "x86_64-linux";
   src = pkgs.fetchzip {
-    url = "https://nightly.link/AfoninZ/MultiMC5-Cracked/workflows/main/develop/mmc-cracked-lin64.zip";
-    sha256 = "sha256-kqCU8KxmLy3oJ5pQdtKzo1RWvUcALLzCFjnopPYjuCA=";
+    url = "https://nightly.link/AfoninZ/UltimMC/workflows/main/develop/mmc-cracked-lin64.zip";
+    sha256 = "sha256-sX9badlHqhAWF6vSjUcCpZUgNn3TLpMFnOeND8UXRxQ=";
   };
 
   nativeBuildInputs = [ autoPatchelfHook wrapQtAppsHook ];
