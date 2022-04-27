@@ -23,6 +23,8 @@ in {
     foot
 
     discord
+    nheko
+    matrix-commander
     betterdiscordctl
     signal-desktop
     scrcpy
@@ -71,6 +73,7 @@ in {
 
     libsForQt5.bismuth
     libsForQt5.krunner
+    latte-dock
 
     #mullvad
     mullvad-vpn

@@ -11,5 +11,6 @@ let
       bling = callPackage ./bling {};
       rubato = callPackage ./rubato {};
       lain = callPackage ./lain {};
+      chili = callPackage ./chili {};
     };
 in lib.fix (lib.extends overrides packages)

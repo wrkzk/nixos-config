@@ -24,6 +24,18 @@
   networking.firewall.allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
   networking.firewall.allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
 
+  # Enable printing
+  services.printing = {
+    enable = true;
+    drivers = [
+      pkgs.gutenprint
+      pkgs.gutenprintBin
+      pkgs.hplip
+      pkgs.brlaser
+      pkgs.brgenml1lpr
+      pkgs.brgenml1cupswrapper
+    ];
+  };
 
   # Localization options
   time.timeZone = "America/Chicago";
@@ -37,7 +49,11 @@
   services.xserver = {
     enable = true;
     #displayManager.startx.enable = true;
-    displayManager.sddm.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      theme = "kde-plasma-chili";
+    };
+    displayManager.defaultSession = "plasmawayland";
     desktopManager.plasma5.enable = true;
     layout = "us";
     xkbOptions = "eurosign:e";
@@ -85,7 +101,8 @@
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
   environment.systemPackages = with pkgs; [
-    firefox-beta
+    firefox
+    chili
     plasma-browser-integration
     xdg-desktop-portal-kde
     (pkgs.writeScriptBin "fs-diff" ''
