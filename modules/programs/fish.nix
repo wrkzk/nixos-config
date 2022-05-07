@@ -4,6 +4,10 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
+      alias gs "git status"
+      alias gc "git commit"
+      alias gp "git push"
+ 
       set fish_greeting
       fish_vi_key_bindings
 
@@ -37,10 +41,6 @@
       set -g fish_pager_color_prefix $cyan
       set -g fish_pager_color_completion $foreground
       set -g fish_pager_color_description $comment
-
-      alias gs "git status"
-      alias gc "git commit"
-      alias gp "git push"
     '';
   };
 }
