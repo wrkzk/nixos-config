@@ -53,6 +53,8 @@ in {
     lain
 
     kitty
+    wmctrl
+    libsForQt5.full
 
     blender
     steam
@@ -69,6 +71,7 @@ in {
     gnomeExtensions.cpu-power-manager
     dash-to-dock-42
     gnomeExtensions.dash-to-panel
+    gnome.gnome-keyring
     fractal
 
     libsForQt5.bismuth
