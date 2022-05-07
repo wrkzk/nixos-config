@@ -5,7 +5,7 @@ let
     ms-vscode.cpptools
   ];
   vscode-with-extensions = pkgs.vscode-with-extensions.override {
-    vscode = pkgs.vscode;
+    vscode = pkgs.vscode-fhs;
     vscodeExtensions = extensions;
   };
 in {
