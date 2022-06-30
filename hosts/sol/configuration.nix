@@ -20,9 +20,6 @@
     hostName = "sol";
     networkmanager.enable = true;
   };
-  services.mullvad-vpn.enable = true;
-  networking.firewall.allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
-  networking.firewall.allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
 
   # Enable printing
   services.printing = {
@@ -47,36 +44,22 @@
 
   # Xorg options
   services.xserver = {
-    enable = true;
-    #displayManager.startx.enable = true;
-    displayManager.sddm = {
-      enable = true;
-      theme = "kde-plasma-chili";
-    };
-    displayManager.defaultSession = "plasmawayland";
-    desktopManager.plasma5.enable = true;
-    layout = "us";
-    xkbOptions = "eurosign:e";
     libinput.enable = true;
   };
 
+  # Hardware options
   sound.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport32Bit = true;
 
-  # Fingerprint recognition
-  #services.fprintd = {
-  #  enable = true;
-  #};
-  
   # User account options
   users = {
     mutableUsers = false;
     users.warren = {
       isNormalUser = true;
       hashedPassword = "$6$GENzGew82/xzgA2f$2tO36hLmjPG3aabC/Lv6tppZTNc.DIe5TJypEU3wcTywu4ffEImjChLc4VbSeMy9gtKW3bEVkR5nxRFUcy3BS.";
-      extraGroups = [ "wheel" "networkmanager" "tilp" "adbusers" "libvirtd" "plugdev" "dialout" ];
+      extraGroups = [ "wheel" "networkmanager" "adbusers" "libvirtd" "plugdev" ];
     };
     users.root = {
       hashedPassword = "$6$rlge4sqneKLy6q/X$DsJL33yz4z8wOsI52oGUIyBP/JHK3EBg.UvDkW664yEekH2YShQ431OcOzMZ1esLDymY/kJetmwZr7EFYqKBI.";
@@ -86,7 +69,6 @@
   programs.adb.enable = true;
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
-  #services.tlp.enable = true;
 
   nix = {
     package = pkgs.nixUnstable;
@@ -99,12 +81,8 @@
     MOZ_ENABLE_WAYLAND = "1";
   };
 
-  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
   environment.systemPackages = with pkgs; [
-    firefox
-    chili
-    plasma-browser-integration
-    xdg-desktop-portal-kde
+    jdk8
     (pkgs.writeScriptBin "fs-diff" ''
       #!${pkgs.stdenv.shell}
       alias btrfs="${pkgs.btrfs-progs}/bin/btrfs"
@@ -143,10 +121,6 @@
 
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "Iosevka" "Monoid" "CascadiaCode"]; })
-    tamsyn
-    tamzen
-    terminus_font
-    termsyn
   ];
 
   environment.etc = {
@@ -188,6 +162,5 @@
   ''; 
 
   system.stateVersion = "21.11";
-
 }
 

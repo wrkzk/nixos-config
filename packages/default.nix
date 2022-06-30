@@ -12,5 +12,6 @@ let
       rubato = callPackage ./rubato {};
       lain = callPackage ./lain {};
       chili = callPackage ./chili {};
+      multimc = libsForQt5.callPackage ./multimc {};
     };
 in lib.fix (lib.extends overrides packages)

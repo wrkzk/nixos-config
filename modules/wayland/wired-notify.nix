@@ -5,4 +5,4 @@
     enable = true;
     config = ./wired.ron;
   };
-};
+}

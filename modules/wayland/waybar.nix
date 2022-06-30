@@ -32,14 +32,38 @@
     style = ''
       * {
         border: none;
-        border-radius: 0;
         font-family: CaskaydiaCove Nerd Font;
         font-size: 12.5px;
       }
 
       window#waybar {
-        background: #16191C;
-        color: #AAB2BF;
+        background: #15161e;
+        color: #c0caf5;
+      }
+
+      #clock {
+        background-color: #272939;
+        margin-right: 3px;
+        margin-top: 3px;
+        margin-bottom: 3px;
+        border-radius: 4px;
+      }
+
+      #battery {
+        background-color: #272939;
+        margin-right: 10px;
+        margin-top: 3px;
+        margin-bottom: 3px;
+        border-radius: 4px;
+      }
+
+      #custom-workspaces {
+        background-color: #272939;
+        margin-left: 3px;
+        margin-top: 3px;
+        margin-right: 3px;
+        margin-bottom: 3px;
+        border-radius: 4px;
       }
     '';
   };

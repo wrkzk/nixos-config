@@ -16,5 +16,8 @@
 
   home.packages = with pkgs; [
     pkgs.luaPackages.vicious
+    bling
+    rubato
+    lain
   ];
 }

@@ -3,9 +3,9 @@
 {
   programs.foot = {
     enable = true;
-    server.enable = true;
     settings = {
       main = {
+        shell = "fish";
         font = "CaskaydiaCove Nerd Font:size=9.3";
         dpi-aware = "no";
       };

@@ -7,10 +7,12 @@
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     nixpkgs-f2k.url = "github:fortuneteller2k/nixpkgs-f2k";
+    wired.url = "github:Toqozz/wired-notify";
   };
 
-  outputs = { self, home-manager, nixpkgs, neovim-nightly, nix-doom-emacs, nixpkgs-f2k }:
-    let
+  outputs = { self, home-manager, nixpkgs, neovim-nightly, nix-doom-emacs, nixpkgs-f2k, wired }:
+  let
+      system = "x86_64-linux";
       nixpkgsConfig = {
         config = { allowUnfree = true; };
       };
@@ -23,21 +25,18 @@
             installer = "Mathematica_12.3.1_LINUX.sh";
           });
         })
-        (self: super: {
-          discord = super.discord.overrideAttrs (old: {
-            src = fetchTarball {
-              url = "https://discord.com/api/download?platform=linux&format=tar.gz";
-              sha256 = "0hdgif8jpp5pz2c8lxas88ix7mywghdf9c9fn95n0dwf8g1c1xbb";
-            };
-          });
-        })
+#        (self: super: { discord = super.discord.overrideAttrs (_: { 
+#          src = "https://discord.com/api/download?platform=linux&format=tar.gz";
+#          setSourceRoot="sourceRoot=`pwd`";
+#        });})
         neovim-nightly.overlay
         nixpkgs-f2k.overlay
+        wired.overlays.${system}
       ];
     in
   {
     nixosConfigurations.sol = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+      inherit system;
       modules =
         [
 	  {
@@ -57,9 +56,11 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.warren = { pkgs, config, ... }:
-	      {
+              {
+                home.stateVersion = "21.11";
 	        imports = [
                   nix-doom-emacs.hmModule
+                  wired.homeManagerModules.default
 		  ./modules/browsers
                   ./modules/dev
                   ./modules/editors

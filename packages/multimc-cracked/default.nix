@@ -1,9 +1,10 @@
-{ lib, pkgs, stdenv, wrapQtAppsHook, glibc, gcc-unwrapped, libsForQt5, dpkg, autoPatchelfHook}:
+{ lib, pkgs, stdenv, wrapQtAppsHook, libXxf86vm, glibc, gcc-unwrapped, libsForQt5, dpkg, autoPatchelfHook}:
 let
 
   rpath = lib.makeLibraryPath [
     gcc-unwrapped
     glibc
+    libXxf86vm
   ];
 
 in stdenv.mkDerivation {
