@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./weechat.nix
   ];
 
   home.package = with pkgs; [
