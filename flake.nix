@@ -68,6 +68,7 @@
                   ./modules/xorg
                   ./modules/wayland
                   ./modules/misc
+                  ./modules/chat
                 ];
 	      };
             }
