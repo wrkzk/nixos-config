@@ -7,5 +7,5 @@
 
   home.package = with pkgs; [
     weechat
-  ]
+  ];
 }
