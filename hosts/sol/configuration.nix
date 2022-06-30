@@ -45,6 +45,8 @@
   # Xorg options
   services.xserver = {
     libinput.enable = true;
+    enable = true;
+    displayManager.startx.enable = true;
   };
 
   # Hardware options

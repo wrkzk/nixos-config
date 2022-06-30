@@ -5,6 +5,7 @@
     ./awesome.nix
     ./autorandr.nix
     ./picom.nix
+    ./herbstluftwm.nix
   ];
 
   home.file = {
