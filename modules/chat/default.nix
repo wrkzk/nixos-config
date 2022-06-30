@@ -4,7 +4,7 @@
   imports = [
   ];
 
-  home.package = with pkgs; [
+  home.packages = with pkgs; [
     weechat
   ];
 }
