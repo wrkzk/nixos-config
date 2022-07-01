@@ -5,7 +5,7 @@
     ./waybar.nix
     ./foot.nix
     ./eww.nix
-    ./wired-notify.nix
+    ./fnott.nix
   ];
 
   home.packages = with pkgs; [
@@ -13,5 +13,6 @@
     ristate
     swaybg
     bemenu
+    ly
   ];
 }
