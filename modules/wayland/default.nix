@@ -5,7 +5,7 @@
     ./waybar.nix
     ./foot.nix
     ./eww.nix
-    ./fnott.nix
+    ./dunst.nix
   ];
 
   home.packages = with pkgs; [
