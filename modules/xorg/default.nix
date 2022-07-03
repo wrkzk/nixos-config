@@ -6,6 +6,7 @@
     ./autorandr.nix
     ./picom.nix
     ./herbstluftwm.nix
+    ./wired-notify.nix
   ];
 
   home.file = {
@@ -20,5 +21,7 @@
     bling
     rubato
     lain
+    feh
+    lemonbar
   ];
 }
