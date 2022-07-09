@@ -6,5 +6,7 @@
 
   home.packages = with pkgs; [
     weechat
+    irssi-override
+    pidgin
   ];
 }
