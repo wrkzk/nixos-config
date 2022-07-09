@@ -20,6 +20,7 @@
     zoom-us
     unzip
     zip
+    aria
 
     mathematica-latest
     virt-manager
@@ -40,5 +41,10 @@
     multimc
 
     wezterm
+
+    wirelesstools
+
+    wayfire
+    wayfireApplications-unwrapped.wcm
   ];
 }
