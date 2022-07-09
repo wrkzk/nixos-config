@@ -14,7 +14,9 @@
   let
       system = "x86_64-linux";
       nixpkgsConfig = {
-        config = { allowUnfree = true; };
+        config = {
+          allowUnfree = true;
+        };
       };
       overlays = [
         (self: super: import ./packages { pkgs = super; })
@@ -29,9 +31,63 @@
 #          src = "https://discord.com/api/download?platform=linux&format=tar.gz";
 #          setSourceRoot="sourceRoot=`pwd`";
 #        });})
+        (self: super: {
+          lemonbar-xft = super.lemonbar-xft.overrideAttrs (old: {
+            src = super.fetchFromGitHub {
+              owner = "e-zk";
+              repo = "lemonbar-xft";
+              rev = "ffaeb0104e2232abc96bafbacd3da2021a2f4a02";
+              sha256 = "DAVtAUVvSdNOan5tOc/ZYwyubuFo11BnGGz99CEu4UA=";
+            };
+          });
+        })
+        (self: super: {
+          siji-ng = super.siji.overrideAttrs (old: {
+            src = super.fetchFromGitHub {
+              owner = "mxkrsv";
+              repo = "siji-ng";
+              rev = "b3fdf6bbab17eaa13c62b8c4a4404fca5c337181";
+              sha256 = "QG4YSszf+Jvj7b4LtIFkdh0D9nKGLmEcFTttxSJ5lL4=";
+            };
+          });
+        })
         neovim-nightly.overlay
         nixpkgs-f2k.overlay
         wired.overlays.${system}
+        (self: super:
+          let
+            deps = with super.pkgs.perlPackages; [
+              HTTPDate
+              HTTPMessage
+              LWP
+              LWPUserAgent
+              URI
+              StringShellQuote
+              TextSprintfNamed
+              TryTiny
+              EncodeLocale
+              LWPProtocolHttps
+            ];
+          in {
+            irssi-override = super.irssi.overrideAttrs (old: {
+              buildInputs = old.buildInputs ++ [ super.pkgs.makeWrapper ] ++ deps;
+              postFixup = ''
+                wrapProgram "$out/bin/irssi" --prefix PERL5LIB : "${super.pkgs.perlPackages.makePerlPath deps}"
+              '';
+            });
+          }
+        )
+        (self: super:
+          {
+            weechat = super.weechat.override {
+              configure = { availablePlugins, ... }: {
+                scripts = with super.weechatScripts; [
+                  weechat-notify-send
+                ];
+              };
+            };
+          }
+        )
       ];
     in
   {
@@ -52,7 +108,7 @@
 	  }
           ./hosts/sol/configuration.nix
           home-manager.nixosModules.home-manager {
-	    nixpkgs = nixpkgsConfig;
+            nixpkgs = nixpkgsConfig;
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.warren = { pkgs, config, ... }:
