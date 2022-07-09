@@ -56,10 +56,18 @@
       }
       {
         plugin = tokyonight-nvim;
+        #config = ''
+        #  set termguicolors
+        #  let g:tokyonight_style = "night"
+        #  colorscheme tokyonight
+        #'';
+      }
+      {
+        plugin = srcery-vim;
         config = ''
           set termguicolors
-          let g:tokyonight_style = "night"
-          colorscheme tokyonight
+          let g:srcery_italic = 1
+          colorscheme srcery
         '';
       }
       {
