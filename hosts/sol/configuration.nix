@@ -44,9 +44,26 @@
 
   # Xorg options
   services.xserver = {
-    libinput.enable = true;
     enable = true;
-    displayManager.startx.enable = true;
+    libinput.enable = true;
+    displayManager = {
+      defaultSession = "none+herbstluftwm";
+      lightdm = {
+        background = "/etc/lightdm/forest.jpg";
+        greeters.mini = {
+          enable = true;
+          user = "warren";
+          extraConfig = ''
+            [greeter]
+            show-image-on-all-monitors = true
+
+            [greeter-theme]
+            background-image-size = contain
+          '';
+        };
+      };
+    };
+    windowManager.herbstluftwm.enable = true;
   };
 
   # Hardware options
@@ -115,6 +132,9 @@
       #!${pkgs.stdenv.shell}
       alacritty msg create-window || alacritty
     '')
+    (pkgs.writeScriptBin "dbus-wayfire-env" ''
+      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wayfire
+    '')
     (pkgs.writeScriptBin "start-alacritty-spad" ''
       #!${pkgs.stdenv.shell}
       alacritty msg create-window --class spad || alacritty --class spad
@@ -123,6 +143,10 @@
 
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "Iosevka" "Monoid" "CascadiaCode"]; })
+    cozette
+    tamzen
+    siji
+    dina-font
   ];
 
   environment.etc = {
@@ -131,6 +155,7 @@
     adjtime.source = "/persist/etc/adjtime";
     NIXOS.source = "/persist/etc/NIXOS";
     machine-id.source = "/persist/etc/machine-id";
+    "lightdm/forest.jpg".source = "/persist/etc/lightdm/forest.jpg";
   };
 
   systemd.tmpfiles.rules = [
