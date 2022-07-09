@@ -2,7 +2,7 @@
 
 {
   services.dunst = {
-    enable = true;
-    configFile = ./dunstrc
+    enable = false;
+    configFile = ./dunstrc;
   };
 }
