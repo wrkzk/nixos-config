@@ -22,6 +22,7 @@
     rubato
     lain
     feh
-    lemonbar
+    lemonbar-xft
+    scrot
   ];
 }
