@@ -20,10 +20,10 @@
 pkgs.libsForQt5.callPackage({mkDerivation}: mkDerivation) {} rec {
   name = "multimc";
   src = fetchFromGitHub {
-    owner = "AfoninZ";
-    repo = "UltimMC";
-    rev = "99fa82c05ebd301ed1a1f5e63dd20ac868348b42";
-    sha256 = "sha256-K3Ov71jzi2Sueaew0dqn0l6LKvjmiL4d+iaZat9xyB0=";
+    owner = "UltimMC";
+    repo = "Launcher";
+    rev = "b5e81bbb0d17e551ae4164f9282f0182c6d4edb3";
+    sha256 = "sha256-NrugkjF5O9GGuv7zPlllCdr0a10bvt7A0UPL+xO4w+Q=";
     fetchSubmodules = true;
   };
 

@@ -3,6 +3,7 @@
 {
   imports = [
     ./alacritty.nix
+    ./ncmpcpp.nix
     ./fish.nix
   ];
 
@@ -21,7 +22,7 @@
     unzip
     zip
     aria
-
+    ncmpcpp
     mathematica-latest
     virt-manager
 
@@ -44,6 +45,8 @@
 
     wirelesstools
 
+    spotdl
+    
     wayfire
     wayfireApplications-unwrapped.wcm
   ];

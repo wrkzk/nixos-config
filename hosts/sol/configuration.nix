@@ -42,6 +42,22 @@
     keyMap = "us";
   };
 
+  services.mpd = {
+    enable = true;
+    network.port = 6600;
+    network.listenAddress = "127.0.0.1";
+    musicDirectory = "/home/warren/music/";
+    playlistDirectory = "/home/warren/music/";
+    startWhenNeeded = true;
+    extraConfig = ''
+      audio_output {
+        type "pulse"
+        name "pulseaudio"
+        server "127.0.0.1"
+      }
+    '';
+  };
+
   # Xorg options
   services.xserver = {
     enable = true;
@@ -69,6 +85,7 @@
   # Hardware options
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.extraConfig = "load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1";
   hardware.opengl.enable = true;
   hardware.opengl.driSupport32Bit = true;
 
@@ -93,6 +110,8 @@
     package = pkgs.nixUnstable;
     extraOptions = ''
       experimental-features = nix-command flakes
+      keep-outputs = true
+      keep-derivations = true
     '';
   };
 
